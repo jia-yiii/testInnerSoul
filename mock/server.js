@@ -1,14 +1,8 @@
 // 引入必要的套件
-import { fileURLToPath } from "url";
-import jsonServer from "json-server";
-import auth from "json-server-auth";
-import path from "path"; // Node.js 內建，用來處理檔案路徑
-import fs from "fs"; // Node.js 內建，用來讀取與寫入檔案
-
-// 處理 __dirname 替代方案
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const jsonServer = require("json-server");
+const auth = require("json-server-auth");
+const path = require("path"); // Node.js 內建，用來處理檔案路徑
+const fs = require("fs"); // Node.js 內建，用來讀取與寫入檔案
 
 const server = jsonServer.create();
 const middlewares = jsonServer.defaults(); // 包含 Logger, Static, CORS 等功能
@@ -28,8 +22,8 @@ const dbPath = path.join(dbDirectory, "db.json");
 if (!fs.existsSync(dbPath)) {
   console.log("⚠️ 偵測到環境中無資料庫檔案，正在初始化基本結構...");
   const initialData = {
-    users: [],
-    diaries: [], // 這是 json-server-auth 必要的會員資料表
+    users: [], // 這是 json-server-auth 必要的會員資料表
+    posts: [], //
   };
   // 將結構轉為 JSON 字串並寫入檔案，格式化縮進為 2 格
   fs.writeFileSync(dbPath, JSON.stringify(initialData, null, 2));
@@ -52,8 +46,8 @@ server.use(auth);
 server.use(router);
 
 // --- [啟動伺服器] ---
-// 優先讀取 Zeabur 給予的 Port，若無則預設 3001 (本地開發用)
-const port = process.env.PORT || 3001;
+// 優先讀取 Zeabur 給予的 Port，若無則預設 3000 (本地開發用)
+const port = process.env.PORT || 3000;
 
 // 關鍵點：一定要監聽 '0.0.0.0'，這代表接受來自容器外部的所有連線
 server.listen(port, "0.0.0.0", () => {
