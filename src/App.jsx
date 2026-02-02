@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { ROUTES } from "./constants/routes";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
@@ -37,7 +37,7 @@ function App() {
     setStartIndex(index);
   };
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <HashRouter>
       <Header />
       <Routes>
         <Route path={ROUTES.home} element={<Home selectPlaylist={selectPlaylist} />} />
@@ -55,7 +55,7 @@ function App() {
         <Footer />
       </footer>
       {songList === null ? <BackToTop /> : <Player songList={songList} startIndex={startIndex} />}
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 
