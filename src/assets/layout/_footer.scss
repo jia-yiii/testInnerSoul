@@ -1,0 +1,59 @@
+.footer-nav {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.footer-Body-B2 {
+  font-family: "Noto Sans TC", sans-serif;
+  font-size: 16px; // Body / B2
+  font-weight: 400; // Regular
+  line-height: 1.5; // 150%
+  letter-spacing: 0.02em; // 2%
+  text-align: center;
+}
+
+.site-footer {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--bs-BG-02);
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/* 左下雲 */
+.footer-cloud-left {
+  position: absolute;
+  left: 5%;
+  bottom: 40px;
+  width: 250px;
+  opacity: 0.9;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Footer 內容一定在雲上 */
+.site-footer .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* RWD */
+@media (max-width: 992px) {
+  .footer-cloud-left {
+    left: 16px;
+    bottom: 16px;
+    width: 220px;
+  }
+}
